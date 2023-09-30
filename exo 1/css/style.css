@@ -1,0 +1,36 @@
+#mesCarres {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.leCarre {
+    width: 200px;
+    height: 200px;
+
+    margin: 25px;
+
+    background-color: blue;
+
+    color: white;
+    font-size: 3em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family:Arial;
+
+    animation: carreSpin 1s;
+}
+
+
+@keyframes carreSpin{
+    from{
+        transform: scale(0) rotate(180deg);
+    }
+    to{
+        transform: scale(1) rotate(0deg);
+    }
+}
