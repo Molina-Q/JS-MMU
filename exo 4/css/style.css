@@ -1,0 +1,61 @@
+body {
+    background-color: rgb(173, 173, 173);
+    font-family: Geneva, Tahoma, sans-serif;
+}
+
+main {
+    padding: 2% 0;
+}
+
+#morpionBoard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#textTurn {
+    color: white;
+    position: absolute;
+    font-size: 1.5em;
+    top:0px;
+    right:10px ;
+}
+
+.textOff {
+    display: none;
+}
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+}
+
+.grid-item {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clickedX {
+    cursor: not-allowed;
+    color: red;
+}
+
+.clickedO {
+    cursor: not-allowed;
+    color: green;
+}
+
+#btnStartGame {
+    
+}
+
+#btnResetGame {
+}
+
+.btnTurnOff {
+    display: none;
+}
