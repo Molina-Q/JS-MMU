@@ -1,42 +1,84 @@
-
-// const nbCarre = 9;
-
-let currentSide = "O";
-
+// base des carrés qui seront clonés
 const carre = document.createElement("div");
 carre.classList.add("grid-item");
 
-const morpionContainer = document.getElementById("morpionContainer");
+const pixelArtContainer = document.getElementById("pixelArtContainer");
 
-const startGame = document.getElementById("inputTable");
+let countCarre = 0;
 
-let red = Math.floor(Math.random() * 255 );
-let blue = Math.floor(Math.random() * 255 );
-let green = Math.floor(Math.random() * 255 );
-window.addEventListener("keydown", (event) => {
+// couleur appliqué au background-color lors d'un clic
+            
+// lorsque j'appuie sur une touche de mon clavier cet event va "listen"  
+window.addEventListener("keydown", (event) => {   
     switch (event.key) {
-        case "ArrowDown":
+        //si la touche est la flèche du haut le code de ce case sera exécuté 
+        case "ArrowUp":
+            if(countCarre > 0) {
+                countCarre--;
+            }
+
             const elements = document.getElementsByClassName("grid-item");
+
             for(i = 1; i <=elements.length; i++){
                 return elements[0].parentNode.removeChild(elements[0]);
             }
+
             break;
 
-        case "ArrowUp":
+        //si la touche est la flèche du bas le code de ce case sera exécuté 
+        case "ArrowDown":
+            countCarre++;
+
             const carreColore = carre.cloneNode();
             carreColore.classList.add("randomColorBackground");
-            carreColore.style.setProperty("background-color", `rgb(${Math.floor(Math.random() * 255 )}, ${Math.floor(Math.random() * 255 )}, ${Math.floor(Math.random() * 255 )} )`)
+            carreColore.style.setProperty("background-color", `rgb(${Math.floor(Math.random() * 255 )}, ${Math.floor(Math.random() * 255 )}, ${Math.floor(Math.random() * 255 )} )`);
+            pixelArtContainer.prepend(carreColore);
 
-            morpionContainer.prepend(carreColore);
+            carreColore.addEventListener("click", function() {
+                carreColore.style.setProperty("background-color", couleurClick);
+            })
             break;
 
+        //si c'est une touche qui n'est pas comprise dans les cases plus haut, le code dans default sera exécuté (ici rien)
         default:
 
             return; 
     }
+    //lorsque le compteur de carré est à 225 il y a une alerte et les carrés pour changer la couleur appliqué au background apparaissent 
+    if(countCarre == 225) {
+        alert("Le carre de 15 x 15 est complété !")
+        mesCouleurs.forEach((maCouleur) => {
+            document.getElementById("choixCouleur" + maCouleur.name).classList.remove("colorsOff");
+        })
+    }
 } );
 
-// eventTarget.addEventListener("keyup", (event) => {
-//     if (event.isComposing || event.keyCode === 229) {
-//       return;
-//     }
+
+const mesCouleurs = [
+    {
+        name:"Noir", 
+        backgroundColor:`rgb(${0}, ${0}, ${0} )`
+    },
+
+    {
+        name:"Jaune", 
+        backgroundColor:`rgb(${255}, ${255}, ${0} )`
+
+    },
+
+    {   
+        name:"Blanc",
+        backgroundColor:`rgb(${255}, ${255}, ${255} )`
+    }
+];
+
+let couleurClick = `rgb(${0}, ${0}, ${0} )`;
+
+mesCouleurs.forEach((maCouleur) =>
+    document.getElementById("choixCouleur" + maCouleur.name).addEventListener("click", () => {
+        couleurClick = maCouleur.backgroundColor;
+    })
+)
+
+
+

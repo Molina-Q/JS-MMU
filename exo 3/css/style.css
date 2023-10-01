@@ -56,6 +56,11 @@ main {
     color: green;
 }
 
+.carreWinner {
+    background-color: yellow;
+    transform: scale(1.10);
+}
+
 #btnStartGame {
     
 }
